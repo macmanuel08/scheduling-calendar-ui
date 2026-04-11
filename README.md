@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Overview
 
-## Getting Started
+The software is a scheduling system wich will show a form to the user that wants to make an appointment. The admin of the app, a doctor or staff may see a calendar to see users who have appointments. This is a fullstack project to further knowledge and skill building components, object oriented programming, and HTTP request and response. Because it is fullstack, I tried to create system design which is easy to change and update.
 
-First, run the development server:
+To start and see the project, you need a PostgresSQL set up and the .env file to connect with the database to run the server and see the appointment form and the calendar page. To start the server run 'pnpm dev' in the console.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Web Pages
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+It has 2 web pages, the homepage and the calendar page. The homepage shows a form where a user to fill out to make an appointment. After submitting the form, the page will redirect to the calendar to confirm the appointment is already set. But it is not the standard which admin or staff should be the only see the appointments.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Development Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## NEXT JS and React JS
+I used Next JS which is built on top of react. I created APIs to connect fetch server for data and for CRUD operations to query or update the database. Because it is build on top of React it is easy to use React's ability to show UI and its features inlcuding managing states, passing props, and using components.
 
-## Learn More
+## Tailwind CSS
+Tailwind allowes you to style UI by only adding classes to a component or HTML element without writing CSS code.
 
-To learn more about Next.js, take a look at the following resources:
+## Typescript
+Typescript allows you to write typed JavaScript which will allow you to catch errors and bugs early when a value should be a specific data type, when a variable is not declared or instantiate, etc.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Lucide React Icons
+Display icons with as components and will shown in the DOM as SVGs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## PostgresSQL
+DBMS allowing you to perform CRUD operations to and from the database.
 
-## Deploy on Vercel
+# Useful Websites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+{Make a list of websites that you found helpful in this project}
+* [Next JS](https://nextjs.org/docs)
+* [React](https://react.dev/learn)
+* [Typescript] (https://www.typescriptlang.org/docs/)
+* [Tailwind] (https://tailwindcss.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Future Work
+* Make it have dynamic so multiple businesses can use it
+* Display more patients' info from the calendar page
+* Add function for admins and staff to update the status of an appointment (pending, confirmed, completed, or canceled)
