@@ -30,8 +30,8 @@ DBMS allowing you to perform CRUD operations to and from the database.
 {Make a list of websites that you found helpful in this project}
 * [Next JS](https://nextjs.org/docs)
 * [React](https://react.dev/learn)
-* [Typescript] (https://www.typescriptlang.org/docs/)
-* [Tailwind] (https://tailwindcss.com/)
+* [Typescript](https://www.typescriptlang.org/docs/)
+* [Tailwind](https://tailwindcss.com/)
 
 # Future Work
 * Make it have dynamic so multiple businesses can use it
