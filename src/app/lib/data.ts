@@ -1,19 +1,9 @@
 'use server';
 
 import postgres from 'postgres';
+import { AppointmentType, AppointmentType2 } from './types';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
-
-type AppointmentType = {
-  id: string;
-  appointment_date: string;
-  appointment_time: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  status: 'pending' | 'confirmed' | 'completed' | 'canceled';
-};
 
 export async function getAppointmentInfoById(id: string) {
   const info = await sql`
@@ -34,6 +24,31 @@ export async function getAppointments(companyId: string | null): Promise<Appoint
     SELECT id, appointment_date, appointment_time, first_name, last_name, email, phone, status
     FROM appointments
     WHERE company_id = ${companyId}
+  `;
+  return result;
+}
+
+export async function getAppointmentsGroupByDate(companyId: string | null, month: number, year: number): Promise<AppointmentType2[]> {
+  const result = await sql<AppointmentType2[]>`
+    SELECT 
+      appointment_date,
+      json_agg(
+        json_build_object(
+          'id', id,
+          'time', appointment_time,
+          'first_name', first_name,
+          'last_name', last_name,
+          'email', email,
+          'phone', phone,
+          'status', status
+        )
+      ) AS appointments
+    FROM appointments
+    WHERE company_id = ${companyId}
+      AND EXTRACT (YEAR FROM appointment_date) = ${year}
+      AND EXTRact (MONTH FROM appointment_date) = ${month}
+    GROUP BY appointment_date
+    ORDER BY appointment_date
   `;
   return result;
 }
