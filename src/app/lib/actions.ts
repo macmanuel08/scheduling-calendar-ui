@@ -88,6 +88,6 @@ export async function createAppointment(
         return {message: `Failed to insert appointment: ${error}`};
     }
 
-    revalidatePath(`/${companyId}/appointment/appointment-success`);
-    redirect(`/${companyId}/appointment/appointment-success`);
+    revalidatePath(`/calendar`);
+    redirect(`/calendar`);
 }
