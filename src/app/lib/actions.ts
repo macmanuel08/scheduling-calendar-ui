@@ -91,3 +91,17 @@ export async function createAppointment(
     revalidatePath(`/calendar`);
     redirect(`/calendar`);
 }
+
+const updateAppointmentsStatusSchema = z.object({
+  id: z.string(),
+  status: z.enum(['pending', 'confirmed', 'completed', 'canceled'])
+});
+
+export async function updateAppointmentsStatus(data: {id: string, status: string}) {
+  const parsed = updateAppointmentsStatusSchema.parse(data);
+  return await sql`
+    UPDATE appointments
+    SET status = ${parsed.status}
+    WHERE id = ${parsed.id}
+  `;
+}

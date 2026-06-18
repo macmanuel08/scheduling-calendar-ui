@@ -1,12 +1,13 @@
-"use client";
+'use client';
 
 import { CalendarIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { generateCalendar } from "@/app/lib/helpers";
+import { RowList, Row } from "postgres";
 
 import CalendarMonth from "@/app/ui/calendar-month";
 
-export default function Calendar() {
+export default function Calendar({updateAppointmentsStatus}: {updateAppointmentsStatus: (data: {id: string, status: string}) => Promise<RowList<Row[]>>}) {
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
 
@@ -63,16 +64,16 @@ export default function Calendar() {
                         Today
                     </button> */}
                     <div className="flex items-center rounded-lg shadow-sm border border-slate-300 overflow-hidden">
-                        <button onClick={togglePrevMonth} className="p-2 bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition border-r border-slate-300 focus:outline-none">
+                        <button onClick={togglePrevMonth} className="p-2 bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition border-r border-slate-300 focus:outline-none cursor-pointer">
                             <ChevronLeft className="w-5 h-5" />
                         </button>
-                        <button onClick={toggleNextMonth} className="p-2 bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition focus:outline-none">
+                        <button onClick={toggleNextMonth} className="p-2 bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition focus:outline-none cursor-pointer">
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
             </div>
-            <CalendarMonth monthAppointments={appointments} daysArray={daysArray} />
+            <CalendarMonth updateAppointmentsStatus={updateAppointmentsStatus} currentMonth={currentMonth == month} currentYear={currentYear == year} monthAppointments={appointments} daysArray={daysArray} />
         </div>
         
     );
